@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import loginImage from "../assets/images/login.svg";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { register } from "../../store/actions/auth";
 
 import "./Auth.scss";
 
 const Register = ({ history }) => {
+  const dispatch = useDispatch();
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -13,6 +17,9 @@ const Register = ({ history }) => {
 
   const submitForm = (e) => {
     e.preventDefault();
+    dispatch(
+      register({ firstName, lastName, email, gender, password }, history),
+    );
   };
 
   return (
